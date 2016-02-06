@@ -10,16 +10,16 @@ At the moment, this is a library intended to be used in a REPL. Open a Python RE
 execfile('dee.py')
 ```
 
-Once you've got that in, the function you probably want to use (in fact, really the _only_ useful function right
-now) is `combin(cards, draw)`. This function will give you the number of possible combinations for drawing a set
-of cards, including combinations with _more_ than the number of that card you need.
+Once you've got that in, you can use `combin(cards, draw)` to get the number of possible hand combinations
+containing a given set of cards, or `probability(cards, draw)` to get the probability of drawing a given set
+of cards.
 
-To use `combin`, you'll need to create some `Card`s. At the moment, a `Card` is literally a wrapper around an
-integer describing how many of a given card exists in a deck (I'm working on that bit now). As such, to create
-one, the interface is just `Card(num)`.
+Cards are, right now, just wrappers around an integer representing how many of them are in the deck. Hence, the
+constructor is just `Card(num)`. I'm working on this.
 
-After you have `Card`s representing all the cards in your combination, you can just call `Combin` with those cards
-and the amount of cards in your initial draw. This will return a (probably fairly large) number. That's the amount
-of hands which could possibly contain your combo.
+If you'd like a combination including _multiple_ copies of a card, you can pass either `combin` or `probability`
+an array representing that card and the minimum number, something like this:
 
-To get the probability, divide that by `binom(deck_size, draw)`.
+```python
+combin([Card(3), [Card(3), 2]], 5)
+```

@@ -16,6 +16,15 @@ class CardNode:
         self.card = card
         self.minimum = minimum
 
+def deck_combinations(draw):
+    return binom(deck_size, draw)
+
+def combin_probability(combination_count, draw):
+    return combination_count / deck_combinations(draw)
+
+def probability(cards, draw):
+    return combin_probability(combin(cards, draw), draw)
+
 def combin(cards, draw):
     return combin_nodes(card_nodes(cards), draw)
 
